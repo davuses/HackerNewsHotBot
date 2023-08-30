@@ -36,9 +36,16 @@ class HackerNewsFetcher:
 
     async def get_stories(self, item_ids):
         async with httpx.AsyncClient() as client:
-            tasks = [self.get_story(item_id, client) for item_id in item_ids]
-
-            items = await tqdm.gather(*tasks)
+            items = []
+            coros = [self.get_story(item_id, client) for item_id in item_ids]
+            for coro in tqdm.as_completed(coros):
+                try:
+                    item = await coro
+                except Exception:
+                    pass
+                else:
+                    items.append(item)
+            print("items count:", len(items))
             return items
 
     def check_story(self, story):
