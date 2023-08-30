@@ -6,7 +6,7 @@ This project was inspired by [hackernewsbot](https://github.com/phil-r/hackernew
 
 ## Features
 
-- Fetches the latest top stories from [Hacker News](https://news.ycombinator.com) every 30 minutes.
+- Fetches the latest top stories from [Hacker News](https://news.ycombinator.com) every 30 minutes. You can customize the update interval to suit your needs.
 - Posts stories that meet a certain score threshold, adjusted for inflation, ensuring high-quality content.
 
 ## Prerequisites
@@ -25,16 +25,26 @@ Before getting started, you'll need the following:
 
 ```ini
 [telegram]
+; Telegram Bot Token:
+;   Insert your Telegram Bot API token here.
 token=<bot_token>
-# channel or chat id
+
+; Channel or Chat ID:
+;   Specify the target channel or chat where the bot will post stories.
 chat_id=<chat_id>
 
 [database]
+; Specify the URI for the database.
 uri=sqlite:///stories.db
 
 [common]
-# score threshold
-score_threshold=300
+; Score Threshold:
+;   Defines the minimum score a Hacker News story must have to be posted.
+score_threshold=280
+
+; Update Interval (in minutes):
+;   Specifies how often the bot fetches the latest stories from Hacker News.
+interval_mins=60
 ```
 
 3. Install the required Python packages:

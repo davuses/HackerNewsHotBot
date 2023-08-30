@@ -1,6 +1,7 @@
-from tqdm.asyncio import tqdm
-import httpx
 import logging
+
+import httpx
+from tqdm.asyncio import tqdm
 
 
 class HackerNewsFetcher:

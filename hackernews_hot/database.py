@@ -7,6 +7,7 @@ import timeago
 from sqlalchemy import Column, DateTime, Integer, String, Text, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
+
 from .telegram import TelegramBot
 
 FOUR_HOURS = datetime.timedelta(hours=4)
