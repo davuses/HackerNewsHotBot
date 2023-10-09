@@ -1,6 +1,11 @@
 import logging
 
 import httpx
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_fixed,
+)
 from tqdm.asyncio import tqdm
 
 
@@ -19,6 +24,10 @@ class HackerNewsFetcher:
                 return response.content
             return None
 
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_fixed(300),
+    )
     async def top_stories(
         self,
     ):
